@@ -1,0 +1,40 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bookmarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hubGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#24292f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0969da;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle for better visibility -->
+  <circle cx="64" cy="64" r="62" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Main bookmark ribbon shape -->
+  <path d="M25 25 L103 25 C106 25 108 27 108 30 L108 90 L66.5 70 L25 90 C25 90 25 27 25 25 Z" 
+        fill="url(#bookmarkGradient)" 
+        stroke="#1e40af" 
+        stroke-width="1.5"/>
+  
+  <!-- Bookmark fold/corner detail -->
+  <path d="M25 25 L35 25 L25 35 Z" fill="#1d4ed8" opacity="0.3"/>
+  
+  <!-- GitHub hub icon (simplified octagon with center) -->
+  <g transform="translate(80, 35)">
+    <circle cx="0" cy="0" r="16" fill="url(#hubGradient)" stroke="#ffffff" stroke-width="2"/>
+    <!-- Simplified GitHub-like symbol -->
+    <circle cx="0" cy="-6" r="3" fill="#ffffff"/>
+    <circle cx="-5" cy="3" r="2.5" fill="#ffffff"/>
+    <circle cx="5" cy="3" r="2.5" fill="#ffffff"/>
+    <circle cx="0" cy="8" r="2" fill="#ffffff"/>
+    <line x1="0" y1="-3" x2="0" y2="6" stroke="#ffffff" stroke-width="2"/>
+    <line x1="-3" y1="1" x2="0" y2="-1" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="3" y1="1" x2="0" y2="-1" stroke="#ffffff" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Small highlight for depth -->
+  <path d="M30 30 L98 30 L98 35 L30 35 Z" fill="#60a5fa" opacity="0.4"/>
+</svg>
