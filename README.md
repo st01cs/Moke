@@ -1,7 +1,7 @@
-# BookMarkHub
+# Moke
 
 <div align="center">
-  <img src="./icon.svg" width="128" height="128" alt="BookmarkHub Icon">
+  <img src="./icon.svg" width="128" height="128" alt="Moke Icon">
   <br>
   <strong>A browser bookmark manager optimized for capture and retrieval speed</strong>
 </div>
@@ -18,7 +18,7 @@
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="./src/assets/bookmarkhub.svg" alt="BookmarkHub Extension Interface" width="400">
+  <img src="./src/assets/bookmarkhub.svg" alt="Moke Extension Interface" width="400">
   <br>
   <em>Clean, intuitive interface for quick bookmark management</em>
 </div>
@@ -78,7 +78,7 @@ This gives you access to GitHub's powerful search, filtering, and organization t
 <details>
 <summary><strong>Can I use a private repository?</strong></summary>
 
-Yes! BookmarkHub works with both public and private repositories. Your bookmarks will only be visible to you and anyone with repository access.
+Yes! Moke works with both public and private repositories. Your bookmarks will only be visible to you and anyone with repository access.
 
 </details>
 

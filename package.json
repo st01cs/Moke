@@ -1,8 +1,8 @@
 {
-  "name": "BookMarkHub",
+  "name": "Moke",
   "description": "A browser extension for managing bookmarks with GitHub integration.",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "wxt",

@@ -15,7 +15,7 @@ export default defineConfig({
 		},
 	}),
 	manifest: {
-		name: "BookMarkHub",
+		name: "Moke",
 		permissions: ["storage", "tabs"],
 		options_ui: {
 			page: "entrypoints/options/index.html",
