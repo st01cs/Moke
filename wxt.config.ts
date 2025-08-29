@@ -17,6 +17,22 @@ export default defineConfig({
 	manifest: {
 		name: "Moke",
 		permissions: ["storage", "tabs"],
+		icons: {
+			16: "16.png",
+			32: "32.png",
+			48: "48.png",
+			96: "96.png",
+			128: "128.png"
+		},
+		action: {
+			default_icon: {
+				16: "16.png",
+				32: "32.png",
+				48: "48.png",
+				96: "96.png",
+				128: "128.png"
+			}
+		},
 		options_ui: {
 			page: "entrypoints/options/index.html",
 			open_in_tab: true

@@ -63,13 +63,29 @@ function App() {
 		const owner = githubConfig.owner;
 		const repo = githubConfig.repo;
 		if (!token || !owner || !repo) {
-			console.error("GitHub 配置缺失");
+			console.error("GitHub configuration missing");
+			alert("GitHub configuration incomplete!\n\nPlease configure your GitHub token, owner, and repository in Settings before saving bookmarks.");
 			setSaveState('idle');
 			return;
 		}
 		const octokit = new Octokit({ auth: token });
 
 		try {
+			// First verify repository access
+			try {
+				await octokit.rest.repos.get({ owner, repo });
+			} catch (repoError: any) {
+				if (repoError.status === 404) {
+					console.error(`Repository not found: ${owner}/${repo}. Check if the repository exists and you have access to it.`);
+					alert(`Repository not found: ${owner}/${repo}\n\nPossible causes:\n• Repository doesn't exist\n• Repository is private and you don't have access\n• Owner/repo name is incorrect\n\nPlease check your GitHub configuration in Settings.`);
+				} else {
+					console.error("Failed to access repository:", repoError);
+					alert(`Failed to access repository: ${repoError.message}`);
+				}
+				setSaveState('idle');
+				return;
+			}
+
 			const response = await octokit.rest.issues.create({
 				owner,
 				repo,
@@ -90,15 +106,38 @@ function App() {
 
 			setSaveState('saved');
 			setShowSaved(true);
-		} catch (error) {
+		} catch (error: any) {
 			console.error("Failed to create issue:", error);
+			
+			if (error.status === 404) {
+				alert(`GitHub API Error: Not Found\n\nPossible causes:\n• Repository ${owner}/${repo} doesn't exist\n• Repository is private and your token doesn't have access\n• Your GitHub token lacks 'issues:write' permission\n• Owner or repository name is incorrect\n\nPlease verify your GitHub configuration in Settings.`);
+			} else if (error.status === 401) {
+				alert(`GitHub API Error: Unauthorized\n\nYour GitHub token is invalid, expired, or doesn't have the required permissions.\n\nPlease update your token in Settings with proper 'repo' or 'issues:write' scope.`);
+			} else if (error.status === 403) {
+				alert(`GitHub API Error: Forbidden\n\nYour GitHub token doesn't have permission to create issues in this repository.\n\nEnsure your token has 'repo' scope for private repos or 'public_repo' scope for public repos.`);
+			} else {
+				alert(`Failed to create GitHub issue: ${error.message || error}`);
+			}
+			
 			setSaveState('idle');
 		}
 	};
 
 	const handleSearch = () => {
-		// TODO: Implement search functionality
-		console.log("Searching bookmarks");
+		const owner = githubConfig.owner;
+		const repo = githubConfig.repo;
+		
+		if (!owner || !repo) {
+			alert("GitHub configuration incomplete!\n\nPlease configure your GitHub owner and repository in Settings before searching bookmarks.");
+			return;
+		}
+		
+		const searchUrl = `https://github.com/${owner}/${repo}/issues`;
+		if (typeof chrome !== "undefined" && chrome.tabs) {
+			chrome.tabs.create({ url: searchUrl });
+		} else {
+			window.open(searchUrl, '_blank');
+		}
 	};
 
 	const handleSettings = () => {
