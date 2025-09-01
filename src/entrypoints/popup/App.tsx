@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Save, Search, Settings, Plus, Check } from "lucide-react";
 import "@/entrypoints/global.css";
 import { Octokit } from "octokit";
@@ -16,6 +17,7 @@ function App() {
 		title: "evanlong-me/sidepanel-extension-template",
 		description: "",
 		tags: "",
+		readLater: false,
 	});
 	const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved'>('idle');
 	const [showSaved, setShowSaved] = useState(false);
@@ -50,7 +52,7 @@ function App() {
 		}
 	}, []);
 
-	const handleInputChange = (field: string, value: string) => {
+	const handleInputChange = (field: string, value: string | boolean) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
 	};
 
@@ -91,6 +93,7 @@ function App() {
 				repo,
 				title: formData.title,
 				body: formData.link,
+				state: formData.readLater ? 'open' : 'closed',
 			});
 			console.log("Issue created:", response.data.html_url);
 
@@ -132,7 +135,7 @@ function App() {
 			return;
 		}
 		
-		const searchUrl = `https://github.com/${owner}/${repo}/issues`;
+		const searchUrl = `https://github.com/${owner}/${repo}/issues?q=is%3Aissue`;
 		if (typeof chrome !== "undefined" && chrome.tabs) {
 			chrome.tabs.create({ url: searchUrl });
 		} else {
@@ -189,6 +192,16 @@ function App() {
 						onChange={(e) => handleInputChange("description", e.target.value)}
 						placeholder="Something useful for your future self"
 					/>
+				</div>
+
+				{/* Read it later Section */}
+				<div className="flex items-center space-x-2">
+					<Checkbox
+						id="readLater"
+						checked={formData.readLater}
+						onCheckedChange={(checked) => handleInputChange("readLater", checked)}
+					/>
+					<Label htmlFor="readLater">Read it later</Label>
 				</div>
 
 				{/* 删除 Tags Section */}

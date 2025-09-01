@@ -188,7 +188,7 @@ function OptionsApp() {
             id="owner"
             value={form.owner}
             onChange={e => handleChange("owner", e.target.value)}
-            placeholder="st01cs"
+            placeholder="username"
             className={connectState === 'error' && !form.owner.trim() ? "border-red-500" : ""}
           />
         </div>
