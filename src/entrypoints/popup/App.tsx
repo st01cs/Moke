@@ -93,9 +93,19 @@ function App() {
 				repo,
 				title: formData.title,
 				body: formData.link,
-				state: formData.readLater ? 'open' : 'closed',
 			});
 			console.log("Issue created:", response.data.html_url);
+
+			// If "Read it later" is unchecked, immediately close the issue
+			if (!formData.readLater) {
+				await octokit.rest.issues.update({
+					owner,
+					repo,
+					issue_number: response.data.number,
+					state: 'closed',
+				});
+				console.log("Issue closed because 'Read it later' was unchecked");
+			}
 
 			// 新增：如果有 description，则创建评论
 			if (formData.description && formData.description.trim() !== "") {
