@@ -201,6 +201,7 @@ function App() {
 						value={formData.description}
 						onChange={(e) => handleInputChange("description", e.target.value)}
 						placeholder="Something useful for your future self"
+						className="border-input"
 					/>
 				</div>
 
@@ -210,6 +211,7 @@ function App() {
 						id="readLater"
 						checked={formData.readLater}
 						onCheckedChange={(checked) => handleInputChange("readLater", checked)}
+						className="border-input"
 					/>
 					<Label htmlFor="readLater">Read it later</Label>
 				</div>

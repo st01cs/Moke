@@ -2,7 +2,7 @@
   "name": "Moke",
   "description": "A browser extension for managing bookmarks with GitHub integration.",
   "private": true,
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
   "scripts": {
     "dev": "wxt",
