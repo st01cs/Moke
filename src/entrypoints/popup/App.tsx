@@ -179,6 +179,7 @@ function App() {
 						value={formData.link}
 						onChange={(e) => handleInputChange("link", e.target.value)}
 						placeholder="Enter URL"
+						readOnly
 					/>
 				</div>
 
