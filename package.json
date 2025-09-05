@@ -2,7 +2,7 @@
   "name": "Moke",
   "description": "A browser extension for managing bookmarks with GitHub integration.",
   "private": true,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -12,7 +12,8 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "submit": "wxt submit"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.9",

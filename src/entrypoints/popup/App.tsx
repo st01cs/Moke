@@ -201,19 +201,19 @@ function App() {
 						value={formData.description}
 						onChange={(e) => handleInputChange("description", e.target.value)}
 						placeholder="Something useful for your future self"
-						className="border-input"
 					/>
 				</div>
 
 				{/* Read it later Section */}
-				<div className="flex items-center space-x-2">
-					<Checkbox
-						id="readLater"
-						checked={formData.readLater}
-						onCheckedChange={(checked) => handleInputChange("readLater", checked)}
-						className="border-input"
-					/>
-					<Label htmlFor="readLater">Read it later</Label>
+				<div className="space-y-2">
+					<div className="flex items-center space-x-2">
+						<Checkbox
+							id="readLater"
+							checked={formData.readLater}
+							onCheckedChange={(checked) => handleInputChange("readLater", checked)}
+						/>
+						<Label htmlFor="readLater">Read it later</Label>
+					</div>
 				</div>
 
 				{/* 删除 Tags Section */}
